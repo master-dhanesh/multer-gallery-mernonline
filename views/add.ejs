@@ -1,0 +1,48 @@
+<%- include('header')%>
+<!--  -->
+<%- include('nav')%>
+<!--  -->
+
+<form
+    class="container w-50"
+    action="/add"
+    method="post"
+    enctype="multipart/form-data"
+>
+    <h2 class="mb-4 text-success">Add gallery...</h2>
+
+    <input
+        class="form-control mb-4 fs-3"
+        type="text"
+        name="title"
+        placeholder="Title"
+    />
+    <input
+        class="form-control mb-4 fs-3"
+        type="text"
+        name="author"
+        placeholder="Author"
+    />
+
+    <div class="d-flex align-items-center justify-content-between">
+        <input
+            class="form-control w-75 mb-4 fs-3 uploadfile"
+            type="file"
+            name="image"
+        />
+        <img class="preview" width="60" src="" alt="" />
+    </div>
+
+    <button class="btn btn-success fs-2 w-50">Add Image</button>
+</form>
+
+<script>
+    const uploadfile = document.querySelector(".uploadfile");
+    const preview = document.querySelector(".preview");
+    uploadfile.addEventListener("change", function (e) {
+        preview.src = URL.createObjectURL(e.target.files[0]);
+    });
+</script>
+
+<!--  -->
+<%- include('footer')%>

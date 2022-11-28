@@ -1,0 +1,57 @@
+<%- include('header')%>
+<!--  -->
+<%- include('nav')%>
+<!--  -->
+
+<form
+    class="container w-50"
+    action="/update/<%= card.id%>"
+    method="post"
+    enctype="multipart/form-data"
+>
+    <h2 class="mb-4 text-primary">update gallery card...</h2>
+
+    <input
+        class="form-control mb-4 fs-3"
+        type="text"
+        name="title"
+        placeholder="Title"
+        value="<%= card.title%>"
+    />
+    <input
+        class="form-control mb-4 fs-3"
+        type="text"
+        name="author"
+        placeholder="Author"
+        value="<%= card.author%>"
+    />
+
+    <div class="d-flex align-items-center justify-content-between">
+        <input
+            class="form-control w-75 mb-4 fs-3 uploadfile"
+            type="file"
+            name="image"
+        />
+        <input type="hidden" name="oldimage" value="<%= card.image%>" />
+        <img
+            class="preview"
+            width="60"
+            src="/uploads/<%= card.image%>"
+            alt=""
+        />
+    </div>
+
+    <button class="btn btn-primary fs-2">Update Card</button>
+    <a href="/delete/<%= card.id%>" class="btn btn-danger fs-2">Delete Card</a>
+</form>
+
+<script>
+    const uploadfile = document.querySelector(".uploadfile");
+    const preview = document.querySelector(".preview");
+    uploadfile.addEventListener("change", function (e) {
+        preview.src = URL.createObjectURL(e.target.files[0]);
+    });
+</script>
+
+<!--  -->
+<%- include('footer')%>
